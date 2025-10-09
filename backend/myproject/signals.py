@@ -13,9 +13,9 @@ def task_post_save(sender, instance, created, **kwargs):
 
 	# Проверка на погрешность, если DUE_DATE уже наступило, то обрабатываем задачу сразу
 	if instance.due_date <= timezone.now():
-		send_task_notification.delay(instance.user.id, instance.title, instance.category.name, instance.completed)
+		send_task_notification.delay(instance.user.id, instance.id)
 	else:
 		send_task_notification.apply_async(
-			args=(instance.user.id, instance.title, instance.category.name, instance.completed),
+			args=(instance.user.id, instance.id),
 			eta=instance.due_date
 		)

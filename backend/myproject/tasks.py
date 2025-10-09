@@ -8,18 +8,19 @@ from backend.lib.http import get_http_client
 from .models import Task
 
 @shared_task
-def send_task_notification(user_id: int, task_title: str, task_category_name: str, task_completed: bool):
-	print(f"📩 Sending notification for user {user_id}: {task_title}")
+def send_task_notification(user_id: int, task_id: str):
+	task = Task.objects.get(id=task_id)
+	print(f"📩 Sending notification for user {user_id}: {task.title}")
 
-	task_status = "Выполнено ✅" if task_completed else "Просрочено ❌"
+	task_status = "Выполнено ✅" if task.completed else "Просрочено ❌"
 
 	url = f"https://api.telegram.org/bot{telegram_bot_config.TOKEN}"
 	params = {
 		"chat_id": user_id,
 		"text": (
 			"<b>🔔 Напоминание!</b>\n\n"
-			f"<b>Задача:</b> {task_title}\n"
-			f"<b>Категория:</b> {task_category_name}\n"
+			f"<b>Задача:</b> {task.title}\n"
+			f"<b>Категория:</b> {task.category.name}\n"
 			f"<b>Статус:</b> {task_status}"
 		),
 		"parse_mode": "HTML"
