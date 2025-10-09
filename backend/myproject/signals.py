@@ -16,6 +16,6 @@ def task_post_save(sender, instance, created, **kwargs):
 		send_task_notification.delay(instance.user.id, instance.title, instance.category.name, instance.completed)
 	else:
 		send_task_notification.apply_async(
-			args=(instance.user.id, instance.title),
+			args=(instance.user.id, instance.title, instance.category.name, instance.completed),
 			eta=instance.due_date
 		)
