@@ -18,8 +18,8 @@ def send_task_notification(user_id: int, task_title: str, task_category_name: st
 		"chat_id": user_id,
 		"text": (
 			"<b>🔔 Напоминание!</b>\n\n"
-			f"<b>Задача:</b> {task_title}"
-			f"<b>Категория:</b> {task_category_name}"
+			f"<b>Задача:</b> {task_title}\n"
+			f"<b>Категория:</b> {task_category_name}\n"
 			f"<b>Статус:</b> {task_status}"
 		),
 		"parse_mode": "HTML"
