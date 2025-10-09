@@ -48,5 +48,6 @@ async def on_due_date_input(message: Message, widget, manager: DialogManager, *a
 		await on_task_create(message, widget, manager)
 
 	except ValueError:
+		user = manager.middleware_data.get("user")
 		text = i18n.translate(namespace="categories.create_category", key="errors.due_date_invalid.message", lang=user.language_code)
 		await message.answer(text=text)

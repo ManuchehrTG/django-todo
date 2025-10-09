@@ -20,5 +20,4 @@ async def on_task_selected(call: CallbackQuery, widget, manager: DialogManager, 
 
 async def back_to_categories(callback: CallbackQuery, widget, manager: DialogManager):
 	user = manager.middleware_data["user"]
-
 	await manager.start(StateCategories.categories, mode=StartMode.RESET_STACK, data={"user": user.model_dump_json()})
