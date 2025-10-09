@@ -16,7 +16,7 @@ async def on_task_create(message: Message, widget, manager: DialogManager):
 	category_id = manager.dialog_data.get("category_id")
 	user = manager.middleware_data.get("user")
 
-	text_json = i18n.translate(namespace="categories.create_category", lang=user.language_code)
+	text_json = i18n.translate(namespace="tasks.create_task", lang=user.language_code)
 
 	if not category_id:
 		return await message.answer(text=text_json["errors"]["category_id_not_found"]["message"])
@@ -49,5 +49,5 @@ async def on_due_date_input(message: Message, widget, manager: DialogManager, *a
 
 	except ValueError:
 		user = manager.middleware_data.get("user")
-		text = i18n.translate(namespace="categories.create_category", key="errors.due_date_invalid.message", lang=user.language_code)
+		text = i18n.translate(namespace="tasks.create_task", key="errors.due_date_invalid.message", lang=user.language_code)
 		await message.answer(text=text)
