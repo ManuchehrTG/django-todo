@@ -33,24 +33,24 @@ services:
         done;
         python manage.py migrate &&
         python manage.py shell < scripts/setup_root_token.py &&
-        python manage.py runserver 0.0.0.0:${DJANGO__PORT}
+        python manage.py runserver 0.0.0.0:${DJANGO__PORT:-8000}
       "
     restart: unless-stopped
     build:
       context: ./backend
       dockerfile: Dockerfile
     labels:
-      - "traefik.enable=${TRAEFIK_ENABLE}"
-      - "traefik.http.routers.bot.rule=Host(`${DJANGO__DOMAIN}`)"
-      - "traefik.http.routers.bot.entrypoints=websecure"
-      - "traefik.http.routers.bot.tls=true"
-      - "traefik.http.routers.bot.tls.certresolver=myresolver"
-      - "traefik.http.services.bot.loadbalancer.server.port=${DJANGO__PORT}"
-      - "traefik.http.services.bot.loadbalancer.server.scheme=http"
+      - "traefik.enable=${TRAEFIK_ENABLE:-false}"
+      - "traefik.http.routers.backend.rule=Host(`${DJANGO__DOMAIN}`)"
+      - "traefik.http.routers.backend.entrypoints=websecure"
+      - "traefik.http.routers.backend.tls=true"
+      - "traefik.http.routers.backend.tls.certresolver=myresolver"
+      - "traefik.http.services.backend.loadbalancer.server.port=${DJANGO__PORT}"
+      - "traefik.http.services.backend.loadbalancer.server.scheme=http"
     env_file:
       - .env.${ENV}
     healthcheck:
-      test: ["CMD", "curl", "-f", "https://${DJANGO__DOMAIN}/health/"]
+      test: ["CMD", "curl", "-f", "https://${DJANGO__DOMAIN:-localhost}/health/"] #Поменять на сервере!
       interval: 15s
       timeout: 15s
       retries: 3
@@ -62,7 +62,7 @@ services:
       - ./logs:/app/logs
       - storage:/app/storage
     ports:
-      - "${DJANGO__PORT_MAPPING}"
+      - "${DJANGO__PORT_MAPPING-8000:8000}"
     depends_on:
       postgres:
         condition: service_healthy
@@ -87,15 +87,15 @@ services:
       context: ./telegram_bot
       dockerfile: Dockerfile
     labels:
-      - "traefik.enable=${TRAEFIK_ENABLE}"
-      - "traefik.http.routers.bot.rule=Host(`${TELEGRAM_BOT__DOMAIN}`)"
-      - "traefik.http.routers.bot.entrypoints=websecure"
-      - "traefik.http.routers.bot.tls=true"
-      - "traefik.http.routers.bot.tls.certresolver=myresolver"
-      - "traefik.http.services.bot.loadbalancer.server.port=${TELEGRAM_BOT__PORT}"
-      - "traefik.http.services.bot.loadbalancer.server.scheme=http"
+      - "traefik.enable=${TRAEFIK_ENABLE:-false}"
+      - "traefik.http.routers.telegram_bot.rule=Host(`${TELEGRAM_BOT__DOMAIN}`)"
+      - "traefik.http.routers.telegram_bot.entrypoints=websecure"
+      - "traefik.http.routers.telegram_bot.tls=true"
+      - "traefik.http.routers.telegram_bot.tls.certresolver=myresolver"
+      - "traefik.http.services.telegram_bot.loadbalancer.server.port=${TELEGRAM_BOT__PORT}"
+      - "traefik.http.services.telegram_bot.loadbalancer.server.scheme=http"
     ports:
-      - "${TELEGRAM_BOT__PORT_MAPPING}"
+      - "${TELEGRAM_BOT__PORT_MAPPING:-8443:8443}"
     env_file:
       - .env.${ENV}
     environment:

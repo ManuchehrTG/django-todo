@@ -8,6 +8,8 @@ class DjangoConfig(BaseModel):
 	CSRF_TRUSTED_ORIGINS: List[str] = Field(default_factory=list)
 
 	LANGUAGE_CODE: str
+	STATIC_URL: str
+	STATIC_ROOT: str
 
 	PORT: int
 	PORT_MAPPING: str
