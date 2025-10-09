@@ -1,0 +1,10 @@
+aiogram
+aiogram-dialog
+dotenv
+fastapi
+httpx
+pydantic-settings
+pytz
+PyYAML
+redis
+uvicorn

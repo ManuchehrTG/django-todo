@@ -1,0 +1,7 @@
+tasks_found:
+  message: |
+    🗂 Задачи:
+
+tasks_not_found:
+  message: |
+    Задачи не найдены, создайте новую задачу!

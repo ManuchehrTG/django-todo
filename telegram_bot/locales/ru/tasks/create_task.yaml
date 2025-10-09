@@ -1,0 +1,15 @@
+message: |
+  ✅ Задача <b>{title}</b> создана.
+
+errors:
+  create_error:
+    message: |
+      ❌ Ошибка при создании задачи.
+  category_id_not_found:
+    message: |
+      ⚠️ Не удалось определить category_id.
+  due_date_invalid:
+    message: |
+      ⚠️ Неверный формат даты!
+
+      <b>Введите в формате:</b> 2025-10-07 15:30

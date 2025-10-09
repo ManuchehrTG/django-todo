@@ -1,0 +1,74 @@
+2025-10-09 00:47:38 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 00:47:39 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 00:48:41 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 00:48:43 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 00:49:47 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 00:49:49 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 00:50:51 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 00:50:52 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 00:51:54 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 00:51:55 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 00:52:58 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 00:52:59 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 00:54:01 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 00:54:03 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 00:54:34 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 00:54:36 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 00:54:37 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 00:54:38 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 00:54:38 - django.utils.autoreload - INFO - [autoreload.py:667] - Watching for file changes with StatReloader
+2025-10-09 00:54:53 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 09:54:59 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 09:55:00 - http - INFO - [client.py:41] - 🌐 Async Client [httpx] connected
+2025-10-09 09:55:00 - redis - INFO - [client.py:28] - ⚡️ Redis connected
+2025-10-09 09:55:00 - middlewares - INFO - [__init__.py:19] - Middlewares is connected ✅
+2025-10-09 09:55:00 - handlers - INFO - [__init__.py:19] - ✓ Router loaded: handlers.commands.start
+2025-10-09 09:55:00 - handlers - INFO - [__init__.py:19] - ✓ Router loaded: handlers.commands.stats
+2025-10-09 09:55:00 - handlers - INFO - [__init__.py:19] - ✓ Router loaded: handlers.commands.tasks
+2025-10-09 09:55:00 - handlers - INFO - [__init__.py:35] - Handlers are connected ✅
+2025-10-09 09:55:00 - app - INFO - [main.py:42] - 🟢 The bot is running!
+2025-10-09 09:55:00 - app - INFO - [main.py:103] - >>> Starting server at 0.0.0.0:8443
+2025-10-09 09:57:24 - repositories.user.UserRepository - INFO - [user.py:16] - POST User
+2025-10-09 00:57:25 - django.request - WARNING - [log.py:253] - Not Found: /api/users/1894088037/
+2025-10-09 09:57:25 - httpx - INFO - [_client.py:1740] - HTTP Request: PATCH https://b366e866f2ea23dfab0484934d92eb5d.serveo.net/api/users/1894088037/ "HTTP/1.1 404 Not Found"
+2025-10-09 09:57:25 - httpx - INFO - [_client.py:1740] - HTTP Request: POST https://b366e866f2ea23dfab0484934d92eb5d.serveo.net/api/users/ "HTTP/1.1 201 Created"
+2025-10-09 09:57:26 - aiogram.event - INFO - [dispatcher.py:172] - Update id=988701102 is handled. Duration 1988 ms by bot id=6720275774
+2025-10-09 09:57:33 - repositories.user.UserRepository - INFO - [user.py:16] - POST User
+2025-10-09 09:57:34 - httpx - INFO - [_client.py:1740] - HTTP Request: PATCH https://b366e866f2ea23dfab0484934d92eb5d.serveo.net/api/users/1894088037/ "HTTP/1.1 200 OK"
+2025-10-09 09:57:34 - httpx - INFO - [_client.py:1740] - HTTP Request: GET https://b366e866f2ea23dfab0484934d92eb5d.serveo.net/api/categories/?user_id=1894088037 "HTTP/1.1 200 OK"
+2025-10-09 09:57:34 - aiogram.event - INFO - [dispatcher.py:172] - Update id=988701103 is handled. Duration 1174 ms by bot id=6720275774
+2025-10-09 00:59:36 - django.utils.autoreload - INFO - [autoreload.py:265] - /app/configs/django.py changed, reloading.
+2025-10-09 00:59:39 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 00:59:39 - django.utils.autoreload - INFO - [autoreload.py:667] - Watching for file changes with StatReloader
+2025-10-09 01:01:50 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 01:01:52 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 01:01:53 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 01:01:53 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 01:01:53 - django.utils.autoreload - INFO - [autoreload.py:667] - Watching for file changes with StatReloader
+2025-10-09 01:02:08 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 10:02:11 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 10:02:11 - http - INFO - [client.py:41] - 🌐 Async Client [httpx] connected
+2025-10-09 10:02:11 - redis - INFO - [client.py:28] - ⚡️ Redis connected
+2025-10-09 10:02:11 - middlewares - INFO - [__init__.py:19] - Middlewares is connected ✅
+2025-10-09 10:02:11 - handlers - INFO - [__init__.py:19] - ✓ Router loaded: handlers.commands.start
+2025-10-09 10:02:11 - handlers - INFO - [__init__.py:19] - ✓ Router loaded: handlers.commands.stats
+2025-10-09 10:02:11 - handlers - INFO - [__init__.py:19] - ✓ Router loaded: handlers.commands.tasks
+2025-10-09 10:02:11 - handlers - INFO - [__init__.py:35] - Handlers are connected ✅
+2025-10-09 10:02:11 - app - INFO - [main.py:42] - 🟢 The bot is running!
+2025-10-09 10:02:11 - app - INFO - [main.py:103] - >>> Starting server at 0.0.0.0:8443
+2025-10-09 01:10:15 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 01:10:16 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 01:10:17 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 01:10:18 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 01:10:18 - django.utils.autoreload - INFO - [autoreload.py:667] - Watching for file changes with StatReloader
+2025-10-09 01:10:32 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 10:10:35 - infrastructure.logger - INFO - [__init__.py:33] - 🚀 Logger initialized successfully
+2025-10-09 10:10:35 - http - INFO - [client.py:41] - 🌐 Async Client [httpx] connected
+2025-10-09 10:10:35 - redis - INFO - [client.py:28] - ⚡️ Redis connected
+2025-10-09 10:10:35 - middlewares - INFO - [__init__.py:19] - Middlewares is connected ✅
+2025-10-09 10:10:35 - handlers - INFO - [__init__.py:19] - ✓ Router loaded: handlers.commands.start
+2025-10-09 10:10:35 - handlers - INFO - [__init__.py:19] - ✓ Router loaded: handlers.commands.stats
+2025-10-09 10:10:35 - handlers - INFO - [__init__.py:19] - ✓ Router loaded: handlers.commands.tasks
+2025-10-09 10:10:35 - handlers - INFO - [__init__.py:35] - Handlers are connected ✅
+2025-10-09 10:10:35 - app - INFO - [main.py:42] - 🟢 The bot is running!
+2025-10-09 10:10:35 - app - INFO - [main.py:103] - >>> Starting server at 0.0.0.0:8443

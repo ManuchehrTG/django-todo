@@ -1,0 +1,165 @@
+services:
+  celery:
+    restart: unless-stopped
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: celery -A myproject worker -l info
+    env_file:
+      - .env.${ENV}
+    volumes:
+      - ./backend:/app/backend
+      - ./configs:/app/configs
+      - ./infrastructure:/app/infrastructure
+      - ./logs:/app/logs
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      backend:
+        condition: service_healthy
+    networks:
+      - app-network
+    labels:
+      - "traefik.enable=false"
+
+  backend:
+    command: >
+      sh -c "
+        while ! nc -z postgres 5432; do
+          echo 'Waiting for PostgreSQL...';
+          sleep 1;
+        done;
+        python manage.py migrate &&
+        python manage.py shell < scripts/setup_root_token.py &&
+        python manage.py runserver 0.0.0.0:${DJANGO__PORT}
+      "
+    restart: unless-stopped
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    labels:
+      - "traefik.enable=${TRAEFIK_ENABLE}"
+      - "traefik.http.routers.bot.rule=Host(`${DJANGO__DOMAIN}`)"
+      - "traefik.http.routers.bot.entrypoints=websecure"
+      - "traefik.http.routers.bot.tls=true"
+      - "traefik.http.routers.bot.tls.certresolver=myresolver"
+      - "traefik.http.services.bot.loadbalancer.server.port=${DJANGO__PORT}"
+      - "traefik.http.services.bot.loadbalancer.server.scheme=http"
+    env_file:
+      - .env.${ENV}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "https://${DJANGO__DOMAIN}/health/"]
+      interval: 15s
+      timeout: 15s
+      retries: 3
+      start_period: 30s
+    volumes:
+      - ./backend:/app/backend
+      - ./configs:/app/configs
+      - ./infrastructure:/app/infrastructure
+      - ./logs:/app/logs
+      - storage:/app/storage
+    ports:
+      - "${DJANGO__PORT_MAPPING}"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - app-network
+      - web
+
+  telegram_bot:
+    command: >
+      sh -c "
+        while [ ! -f /app/storage/root_token.txt ]; do
+          echo 'Waiting for backend token...';
+          sleep 2;
+        done;
+        export TELEGRAM_BOT__BACKEND_ACCESS_TOKEN=$(cat /app/storage/root_token.txt);
+        python3 -u main.py
+      "
+    restart: unless-stopped
+    build:
+      context: ./telegram_bot
+      dockerfile: Dockerfile
+    labels:
+      - "traefik.enable=${TRAEFIK_ENABLE}"
+      - "traefik.http.routers.bot.rule=Host(`${TELEGRAM_BOT__DOMAIN}`)"
+      - "traefik.http.routers.bot.entrypoints=websecure"
+      - "traefik.http.routers.bot.tls=true"
+      - "traefik.http.routers.bot.tls.certresolver=myresolver"
+      - "traefik.http.services.bot.loadbalancer.server.port=${TELEGRAM_BOT__PORT}"
+      - "traefik.http.services.bot.loadbalancer.server.scheme=http"
+    ports:
+      - "${TELEGRAM_BOT__PORT_MAPPING}"
+    env_file:
+      - .env.${ENV}
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./telegram_bot:/app/telegram_bot
+      - ./configs:/app/configs
+      - ./infrastructure:/app/infrastructure
+      - ./logs:/app/logs
+      - storage:/app/storage
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      backend:
+        condition: service_healthy
+    networks:
+      - app-network
+      - web
+
+  postgres:
+    image: postgres:16.2
+    restart: unless-stopped
+    env_file:
+      - .env.${ENV}
+    environment:
+      POSTGRES_USER: ${DATABASE__USER}
+      POSTGRES_PASSWORD: ${DATABASE__PASSWORD}
+      POSTGRES_DB: ${DATABASE__NAME}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DATABASE__USER} -d ${DATABASE__NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+    labels:
+      - "traefik.enable=false"
+
+  redis:
+    image: redis:alpine
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+    labels:
+      - "traefik.enable=false"
+
+volumes:
+  postgres_data:
+  redis_data:
+  storage:
+
+networks:
+  app-network:
+    driver: bridge
+  web:
+    external: true

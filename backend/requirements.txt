@@ -1,0 +1,10 @@
+celery
+dotenv
+Django
+djangorestframework
+django-cors-headers
+httpx
+psycopg2-binary
+pydantic-settings
+python-decouple
+redis

@@ -1,0 +1,5 @@
+message: |
+  <b>Количество категорий:</b> {count_categories}
+  <b>Количество задач:</b> {count_tasks}
+  <b>Количество выполненных задач:</b> {count_completed_tasks}
+  <b>Количество проваленных задач:</b> {count_failed_tasks}

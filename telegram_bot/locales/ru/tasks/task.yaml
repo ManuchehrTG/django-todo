@@ -1,0 +1,7 @@
+message: |
+  <b>Название:</b> {title}
+  <b>Категория [tag]:</b> {category_name}
+  <b>Описание:</b> {description}
+
+  <b>Дата создания:</b> {created_at}
+  <b>Дата исчерпания:</b> {due_date}

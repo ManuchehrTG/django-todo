@@ -1,0 +1,7 @@
+message: |
+  ✅ Категория <b>{title}</b> создана.
+
+errors:
+  create_error:
+    message: |
+      ❌ Ошибка при создании категории.
