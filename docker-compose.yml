@@ -50,7 +50,7 @@ services:
     env_file:
       - .env.${ENV}
     healthcheck:
-      test: ["CMD", "curl", "-f", "https://${DJANGO__DOMAIN:-localhost}/health/"] #Поменять на сервере!
+      test: ["CMD", "curl", "-f", "https://backend:${DJANGO__PORT}/health/"]
       interval: 15s
       timeout: 15s
       retries: 3
@@ -62,7 +62,7 @@ services:
       - ./logs:/app/logs
       - storage:/app/storage
     ports:
-      - "${DJANGO__PORT_MAPPING-8000:8000}"
+      - "${DJANGO__PORT_MAPPING:-8000:8000}"
     depends_on:
       postgres:
         condition: service_healthy
