@@ -7,6 +7,7 @@ from configs import app_config
 from dialogs.tasks.states import StateTasks
 from repositories.task import TaskRepository
 from schemes.database import Task
+from utils.i18n import i18n
 
 async def on_task_create(message: Message, widget, manager: DialogManager):
 	title = manager.dialog_data.get("title")
