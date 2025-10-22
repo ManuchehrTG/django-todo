@@ -62,8 +62,8 @@ services:
       - ./infrastructure:/app/infrastructure
       - ./logs:/app/logs
       - storage:/app/storage
-    ports:
-      - "${DJANGO__PORT_MAPPING:-8000:8000}"
+    # ports:
+    #   - "${DJANGO__PORT_MAPPING:-8000:8000}"
     depends_on:
       postgres:
         condition: service_healthy
@@ -95,8 +95,8 @@ services:
       - "traefik.http.routers.telegram_bot.tls.certresolver=myresolver"
       - "traefik.http.services.telegram_bot.loadbalancer.server.port=${TELEGRAM_BOT__PORT}"
       - "traefik.http.services.telegram_bot.loadbalancer.server.scheme=http"
-    ports:
-      - "${TELEGRAM_BOT__PORT_MAPPING:-8443:8443}"
+    # ports:
+    #   - "${TELEGRAM_BOT__PORT_MAPPING:-8443:8443}"
     env_file:
       - .env.${ENV}
     environment:
